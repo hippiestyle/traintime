@@ -31,49 +31,9 @@ database.ref().on("value", function(snapshot) {
     var nextTrain = 0; 
     var trainFrequency = 0; 
     var theTime = 0; 
+    var currentTIme = moment(); 
 
-//     var theCurrentTime = moment(); 
-//     var c2 = moment.unix(); 
-//     console.log('current time: ' + theCurrentTime);
-//     console.log("unix time: "+ c2);
-
-//     //creating difference between current time and now. 
-//     difference = moment().diff(moment.unix(snapshot.val().ffirstTrain), "minutes");
-//     console.log("difference: " + difference);
-//     //creating remainder of time to help with when the next one is coming
-//     trainRemainder = difference % frequency; 
-//     // minutes to arrival shows when the next train is coming based on how often the train comes minus the remainder for the next train
-//     minutesToArrival = trainFrequency - trainRemainder;  
-//     //appending the minutes to arrival to right nows time. 
-//     nextTrain = moment().add(minutesToArrival, "m").format("hh:mm A");
-//     //showing current time
-//     currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-//     console.log(theTime);
-//    //creating the rows which will show the details 
-
-    var newRow = $("<tr>"); 
-    
-    newRow.append($("<td>").text(snapshot.val().ftrainTame)); 
-    newRow.append($("<td>").text(snapshot.val().fdestination)); 
-    newRow.append($("<td>").text(frequency));
-    newRow.append($("<td>").text(firstTrain).addClass("data"));
-    newRow.append($("<td>").text(minutesToArrival).addClass("data"));
-    newRow.append($("<td>").text(nextTrain).addClass("data"));
-    
-    $(".tableClass").append(newRow); 
-
-    database.ref('users/').push({
-        ftrainName: trainName,
-        fdestination: destination,
-        ffrequency: frequency,
-        ffirstTrain: firstTrain,
-        fnextArrival: nextArrival,
-        fminutesAway: minutesAway,
-        fcurrentTime: currentTime
         
-    }); 
-function addTrain() {
-
     event.preventDefault(); 
     
     trainName = $("#train-name").val();
@@ -84,13 +44,44 @@ function addTrain() {
     console.log("first train: "+ firstTrain)
     frequency = $("#frequency").val(); 
     console.log("frequency: " + frequency);
+
+
+function addRow() { 
+    var newRow = $("<tr>"); 
     
+    newRow.append($("<td>").text(snapshot.val().ftrainTame)); 
+    newRow.append($("<td>").text(snapshot.val().fdestination)); 
+    newRow.append($("<td>").text(firstTrain));
+    newRow.append($("<td>").text(frequency));
+    newRow.append($("<td>").text(snapshot.val().fnextArrival));
+    newRow.append($("<td>").text(snapshot.val().fminutesAway));
     
-};
-        
-    $("#trainButton").on("click", function() {
-        event.preventDefault(); 
-        addTrain();
+    $(".tableClass").append(newRow); 
+}
+
+$("#trainButton").on("click", function() {
+    event.preventDefault(); 
+    
+    trainName = $("#train-name").val();
+    console.log("trainname " + trainName); 
+    destination = $("#destination-name").val();
+    console.log("destination: " + destination)
+    firstTrain = $("#first-train").val(); 
+    console.log("first train: "+ firstTrain)
+    frequency = $("#frequency").val(); 
+    console.log("frequency: " + frequency);
+
+    database.ref().set({
+        ftrainName: trainName,
+        fdestination: destination,
+        ffrequency: frequency,
+        ffirstTrain: firstTrain,
+        fnextArrival: nextArrival,
+        fminutesAway: minutesAway,
+        fcurrentTime: currentTime
+    }); 
+
+    addRow(); 
         console.log("yeah, train button worked")
     });
     
