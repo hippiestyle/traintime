@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Train Schedule</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+
+    
+</head>
+
+
+<body>
+    <div class="jumbotron">
+        <h1 id="header">Train Time</h1>
+    </h2 id="subheader">Choo Choo</h2>
+</div>
+
+<div id="trainScheduleHeader">
+    <h2 id="trainSchedule">Train Schedule</h2>
+    <br>
+    
+    <div class="container">Current Time: <span id="currentTime">00:00</span>           
+        <table class="tableClass">
+            <tr>
+                <th class="headers" id="train-row">Train Name</th>
+                <th class="headers" id="destination-row">Destination Name</th>
+                <th class="headers" id="first-train-row">First Train Time (HH:mm - military time)</th>
+                <th class="headers" id="frequency-row">Frequency</th>
+                <th class="headers" id="next-arrival-row">Next Arrival</th>
+                <th class="headers" id="minutes-away-row">Minutes Away</th>
+            </tr>
+    
+        </table>          
+            
+    </div>
+</div>
+<br>
+    
+    <div class="addTrainHeader"> 
+        <h2 id="addTrain">Add Train</h2>   
+        <br>
+
+        <form>
+            <div class="form-group">
+                <label for="train-name">Train Name</label>
+                <input type="input" class="form-control" id="train-name">
+                
+            </div>
+            <div class="form-group">
+                <label for="destinationName">Destination</label>
+                <input type="input" class="form-control" id="destination-name">
+            </div>
+            
+            <div class="form-group">
+                <label for="first-train">First Train Time (HH:mm - military time)</label>
+                <input type="input" class="form-control" id="first-train">
+            </div>
+            
+            <div class="form-group">
+                <label for="roleName">Frequency</label>
+                <input type="input" class="form-control" id="frequency">
+            </div>
+            
+            <button type="submit" class="btn btn-primary btnClick">Submit</button>
+        </form>
+        
+        
+        
+    </div>
+    
+    
+    <script src="assets/javascript/game.js"></script>
+</body>
+</html>

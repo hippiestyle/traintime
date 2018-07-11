@@ -1,0 +1,20 @@
+/* .headers {
+    padding-left: 10px; 
+    padding-right: 10px; 
+    width: 250px; 
+    height: 30px; 
+} */
+
+/* .data {
+    width: 250px; 
+} */
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

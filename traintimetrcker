@@ -1,0 +1,42 @@
+first train 
+frequency
+next arrival 
+minutes away 
+
+
+FIRST_TRAIN = 7:00 
+CURRENT_TIME = 8:15
+FREQUENCY = 30
+
+
+var timeHolder = 0;
+var nextArrival = 0; 
+var currentTime = 0; 
+
+
+
+
+if next arrival time is earlier is before current time 
+add frequency 
+
+else if ( TIME_HOLDER is after CURRENT_TIME) 
+
+var NEXT_ARRIVAL = TIME_HOLDER - CURRENT_TIME
+
+
+   // get the remainder of time by using 'moderator' with the frequency & time difference, store in var
+    trainRemainder = trainDiff % frequency;
+
+    // subtract the remainder from the frequency, store in var
+    minutesTillArrival = frequency - trainRemainder;
+
+
+TRAIN_DIFFERENCE = CURRENT_TIME - FIRST_TRAIN
+    8:15 - 7:00 = 1.15
+    
+HOW_MANY_TRAINS =  TRAIN_DIFFERENCE / FREQUENCY
+    8:15 - 7:00 = 2.5
+
+
+NEXT_ARRIVAL = TRAIN_DIFFERENCE % FREQUENCY
+
