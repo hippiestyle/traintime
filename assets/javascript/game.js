@@ -1,32 +1,4 @@
-clock();
-//import firebase script first 
-var trainName = ""; 
-var destination = ""; 
-var frequency = ""; 
-var firstTrain = "";
-var nextArrival = ""; 
-var minutesAway = ""; 
-var timeDifference = ""; 
 
-var jFirstTrain = $("#first-train")
-var jTrainName = $("#train-name");
-var jDestinationName = $("#destination-name"); 
-var jFrequency = $("#frequency");
-
-
-
-//Convert first time to moment
-var convertedTime = "11:30";
-var convertedFormat = "HH:mm"
-var convertedDate = moment(convertedTime, convertedFormat);
-//three different ways to look at time
-var currentTime = moment().format("HH:mm");
-var unixTime = moment().unix();
-var currentTime = moment().format("dddd, MMMM Do, YYYY h:mm:ss A"); 
-//calculate next time
-console.log("converted Date: " + convertedDate);
-console.log("current time: " + currentTime);
-console.log("unix time: " + unixTime);
 
 //initializing firebase 
 var config = {
@@ -42,25 +14,55 @@ var config = {
 
 //database reference
 var database = firebase.database(); 
+clock();
+// var trainName = ""; 
+// var destination = ""; 
+// var frequency = ""; 
+// var firstTrain = "";
+// var nextArrival = ""; 
+// var minutesAway = ""; 
+// var timeDifference = ""; 
 
-// database.ref().on("value", function(snapshot) {
-//     var currentTime = currentTime.snapshot.val();
-//     $("#currentTime").text(currentTime);
+var jFirstTrain = $("#first-train")
+var jTrainName = $("#train-name");
+var jDestinationName = $("#destination-name"); 
+var jFrequency = $("#frequency");
 
-// }); 
+
+//calculate next time
+console.log("converted Date: " + convertedDate);
+console.log("current time: " + currentTime);
+console.log("unix time: " + unixTime);
+
 
 database.ref().on("child_added", function(snapshot) {
 //creating local variables
     var data = snapshot.val(); 
-    var difference = 0; 
-    var trainRemainder = 0; 
-    var minutesToArrival = ""; 
-    var nextTrain = ""; 
-    var trainFrequency = snapshot.val().frequency; 
-    var currentTime = moment().unix()
 
+    //grab variable from Firebase
+    var trainFrequency = snapshot.val().frequency; 
+    //format firstrain input into a military time
+    var firstTrain = moment(data.firstTrain, "HH:mm");
+    //format firsttrain time minus 1 year (for calculation purposes)
+    var firstTrainFormatted = moment(firstTrain).subtract(1, "years");
+    //calculating the difference between now and the first train. 
+    var timeDifference = moment().diff(firstTrainFormatted, "minutes"); 
+    // calculating the remainder of time since the last train
+    var timeElapsed = timeDifference % trainFrequency;
+    //calculating minutes to arrival by train frequency minus timeElapsed
+    var minutesToArrival = trainFrequency - timeElapsed; 
+    //calculating when the next trsain comes by adding minutes to arrival from current time and formatting to military time. 
+    var nextTrain = moment().add(minutesToArrival, "minutes").format("HH:mm"); 
+    console.log("time difference: " + timeDifference);
+    console.log("first train formatted: " + firstTrainFormatted);
+    console.log("first train: " + firstTrain);
+    console.log("data.firstTrain: " + data.firstTrain); 
+    console.log("next Train Interval: " + timeElapsed);
+    console.log("minutes to Arrival: " + minutesToArrival); 
+    console.log("next Train: " + nextTrain); 
     // this is what i need to get to work after I figure out how to properly parse the input data
-    difference = moment().diff(moment.unix(data.firstTrain));
+    //difference = moment().diff(moment.unix(data.firstTrain));
+
 
     event.preventDefault(); 
     console.log(snapshot.val());
@@ -76,9 +78,9 @@ database.ref().on("child_added", function(snapshot) {
     // frequency
     newRow.append($("<td>").text(data.frequency));
     //next arrival
-    newRow.append($("<td>").text(moment().unix()));
+    newRow.append($("<td>").text(nextTrain));
     // minutes away 
-    newRow.append($("<td>").text(data.difference));
+    newRow.append($("<td>").text(minutesToArrival));
     
     $(".tableClass").append(newRow); 
 
@@ -96,21 +98,16 @@ $("#trainButton").on("click", function() {
     event.preventDefault(); 
     trainName = jTrainName.val();
     destination = jDestinationName.val();
-    frequency = jFrequency.val() * 60; 
-    console.log("frequency in Unix: " + frequency); 
-    //need to format this for everything to work properly
-    firstTrain = moment(jFirstTrain.val(), "HH:mm").format("X"); 
+    frequency = jFrequency.val();
+    firstTrain = jFirstTrain.val(); 
     console.log("FIRST Train In UNIX: " + firstTrain)
-    nextArrival = moment().unix() - (firstTrain - moment().unix()%frequency);
-    console.log("Next Arrival: " + nextArrival);
+
     
     database.ref().push({
         trainName,
         destination,
         frequency,
-        firstTrain,
-        nextArrival,
-        minutesAway
+        firstTrain
     }); 
     
     console.log("yeah, train button worked")
