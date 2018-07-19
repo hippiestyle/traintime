@@ -29,12 +29,6 @@ var jDestinationName = $("#destination-name");
 var jFrequency = $("#frequency");
 
 
-//calculate next time
-console.log("converted Date: " + convertedDate);
-console.log("current time: " + currentTime);
-console.log("unix time: " + unixTime);
-
-
 database.ref().on("child_added", function(snapshot) {
 //creating local variables
     var data = snapshot.val(); 
