@@ -13,10 +13,12 @@ td, th {
     border: 1px solid #dddddd;
     text-align: center;
     padding: 8px;
+    background-color: white; 
 }
 
 tr:nth-child(even) {
     background-color: #dddddd;
+
 }
 
 .addTrainHeader { 
@@ -26,8 +28,32 @@ tr:nth-child(even) {
 #trainSchedule { 
     padding-left: 40px; 
     padding-right: 40px; 
+    color: white; 
 }
 
 .topHeader {
     text-align: center; 
+    color: white; 
+    background-color: darkgray; 
 }
+#addTrain {
+    color: white; 
+}
+body {
+    background-color: rgba(0, 0, 0, 0.87); 
+}
+
+.form-group {
+    color: white; 
+}
+
+#currentTime {
+    color: white; 
+}
+
+/* #addTrain, {
+    border-radius: 5px; 
+    width: 250px; 
+    padding-left: 40px; 
+    border-color: white; 
+} */
