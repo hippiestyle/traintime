@@ -16,9 +16,9 @@
 
 
 <body>
-    <div class="jumbotron">
-        <h1 id="header">Train Time</h1>
-    </h2 id="subheader">Choo Choo</h2>
+    <div class="jumbotron topHeader">
+        <h1 id="header">Johnstonville Train Station</h1>
+    </h2 id="subheader">You Don't Have to Go But You Can't Stay Here</h2>
 </div>
 
 <div id="trainScheduleHeader">
@@ -30,7 +30,7 @@
             <tr>
                 <th class="headers" id="train-row">Train Name</th>
                 <th class="headers" id="destination-row">Destination Name</th>
-                <th class="headers" id="first-train-row">First Train Time (HH:mm - military time)</th>
+                <th class="headers" id="first-train-row">First Train Time (military time)</th>
                 <th class="headers" id="frequency-row">Frequency</th>
                 <th class="headers" id="next-arrival-row">Next Arrival</th>
                 <th class="headers" id="minutes-away-row">Minutes Away</th>
@@ -49,7 +49,7 @@
         <form>
             <div class="form-group">
                 <label for="train-name">Train Name</label>
-                <input type="input" class="form-control" id="train-name">
+                <input type="input" class="form-control" id="train-name" >
                 
             </div>
             <div class="form-group">
@@ -59,7 +59,7 @@
             
             <div class="form-group">
                 <label for="first-train">First Train Time (HH:mm - military time)</label>
-                <input type="input" class="form-control" id="first-train">
+                <input type="input" class="form-control" id="first-train" data-inputmask="'mask': 'HH:mm'">
             </div>
             
             <div class="form-group">

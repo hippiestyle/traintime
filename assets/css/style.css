@@ -11,10 +11,23 @@
 
 td, th {
     border: 1px solid #dddddd;
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+.addTrainHeader { 
+    padding: 40px; 
+}
+
+#trainSchedule { 
+    padding-left: 40px; 
+    padding-right: 40px; 
+}
+
+.topHeader {
+    text-align: center; 
 }

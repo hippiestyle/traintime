@@ -23,10 +23,7 @@ clock();
 // var minutesAway = ""; 
 // var timeDifference = ""; 
 
-var jFirstTrain = $("#first-train")
-var jTrainName = $("#train-name");
-var jDestinationName = $("#destination-name"); 
-var jFrequency = $("#frequency");
+
 
 
 database.ref().on("child_added", function(snapshot) {
@@ -88,7 +85,14 @@ function clock() {
 }
 
 
+
 $("#trainButton").on("click", function() {
+
+    var jFirstTrain = $("#first-train");
+    var jTrainName = $("#train-name");
+    var jDestinationName = $("#destination-name"); 
+    var jFrequency = $("#frequency");
+
     event.preventDefault(); 
     trainName = jTrainName.val();
     destination = jDestinationName.val();
